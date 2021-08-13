@@ -7,13 +7,17 @@
 
     <title>K.Ozturk</title>
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+    </style>
+
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body>
     <main>
-        <div id="typed-strings">
+        <div id="typed-strings" style="display: none;">
             <p>Welcome...^1000</p>
             <p>I hope you're having a great day.^1000</p>
             <p>Who am I?^1000</p>
@@ -22,13 +26,12 @@
         <a href="index.html" class="greet">
             <span id="greet"></span>
         </a>
-        <!-- <nav>
+        <nav>
             <ul>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#links">Links</a></li>
             </ul>
         </nav>
-        <h2>My Family</h2> -->
         <img class="portrait" src="images/other/kemal.jpg">
     </main>
     <footer>
@@ -53,6 +56,7 @@
             portrait.classList.add('fade-in')
             portrait.classList.add('slide-left')
             greet.classList.add('slide-right')
+            greet.classList.add('big')
         }
 
         // fadeOut: true,

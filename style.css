@@ -6,7 +6,6 @@
     box-sizing: border-box
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 body, h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     padding: 0;
@@ -24,7 +23,7 @@ li {
 body {
     background: url(images/main-background.jpg);
     color: var(--main-text-color);
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Syne Mono', monospace;
     letter-spacing: .4px;
     display: flex;
     width: 100%;
@@ -35,10 +34,11 @@ main {
     background: rgb(0 0 0 / 70%);
     border-radius: 2rem;
     padding: 100px;
-    height: 2000px;
     margin: 100px;
     width: 70%;
+    max-width: 1800px;
     margin-bottom: 100px;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto 1fr;
@@ -46,14 +46,23 @@ main {
 }
 
 .greet>span {
-    font-size: 4rem;
+    font-size: 50px;
+    transition: font-size 500ms ease-in-out;
+}
+
+.greet.big>span {
+    font-size: 75px;
+}
+
+.greet>span.typed-cursor {
+    width: 20px;
 }
 
 .greet {
     width: fit-content;
     grid-area: greet;
     align-self: center;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .portrait {
@@ -69,6 +78,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.52);
     position: fixed;
     width: 100%;
+    height: 60px;
     bottom: 0;
     text-align: center;
     padding-top: 1rem;
@@ -99,7 +109,7 @@ footer a:hover {
         left: 0px;
     }
     to {
-        left: 250px;
+        left: 225px;
     }
 }
 
@@ -113,7 +123,7 @@ footer a:hover {
         right: 0px;
     }
     to {
-        right: 250px;
+        right: 225px;
     }
 }
 
@@ -122,9 +132,28 @@ footer a:hover {
         width: 80%;
     }
 }
-@media only screen and (max-width: 2050px) {
+
+@media only screen and (max-width: 2125px) {
     main {
         margin: 75px;
         width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1885px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: "greet" "portrait";
+        place-items: center;
+        margin: 0;
+        width: 100%;
+    }
+    .greet.big>span {
+        font-size: 50px;
+    }
+    .portrait, .greet {
+        position: unset;
+        margin-bottom: 50px;
     }
 }
