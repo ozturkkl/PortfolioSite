@@ -20,6 +20,10 @@ li {
     list-style: none;
 }
 
+ul {
+    padding-inline-start: 0;
+}
+
 body {
     background: url(images/main-background.jpg);
     color: var(--main-text-color);
@@ -32,26 +36,22 @@ body {
 
 main {
     background: rgb(0 0 0 / 70%);
-    border-radius: 2rem;
     padding: 100px;
-    margin: 100px;
-    width: 70%;
-    max-width: 1800px;
-    margin-bottom: 100px;
+    width: 1920px;
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "greet greet portrait" ". . .";
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: "greet greet portrait" "navigation navigation navigation" "content content content";
 }
 
 .greet>span {
-    font-size: 50px;
+    font-size: 55px;
     transition: font-size 500ms ease-in-out;
 }
 
 .greet.big>span {
-    font-size: 75px;
+    font-size: 80px;
 }
 
 .greet>span.typed-cursor {
@@ -74,6 +74,42 @@ main {
     opacity: 0;
 }
 
+nav {
+    grid-area: navigation;
+    width: 100%;
+    margin: 75px 0;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+
+nav h2 {
+    position: relative;
+    left: -270px;
+    top: 20px;
+}
+
+nav>ul {
+    display: flex;
+    margin: 0;
+}
+
+nav>ul>li {
+    padding: 30px;
+    font-size: 40px;
+}
+
+nav>ul>li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    transform: scale(1.2);
+    transition: transform 100ms ease-in-out;
+}
+
+.content {
+    grid-area: content;
+}
+
 footer {
     background-color: rgba(0, 0, 0, 0.52);
     position: fixed;
@@ -81,8 +117,8 @@ footer {
     height: 60px;
     bottom: 0;
     text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
     font-size: small;
 }
 
@@ -109,7 +145,7 @@ footer a:hover {
         left: 0px;
     }
     to {
-        left: 225px;
+        left: 300px;
     }
 }
 
@@ -123,37 +159,43 @@ footer a:hover {
         right: 0px;
     }
     to {
-        right: 225px;
+        right: 300px;
     }
 }
 
-@media only screen and (max-width: 2400px) {
-    main {
-        width: 80%;
+@media only screen and (max-width: 1899px) {
+    .greet.big>span {
+        font-size: 55px;
     }
 }
 
-@media only screen and (max-width: 2125px) {
-    main {
-        margin: 75px;
-        width: 90%;
-    }
-}
-
-@media only screen and (max-width: 1885px) {
+@media only screen and (max-width: 1699px) {
     main {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr;
-        grid-template-areas: "greet" "portrait";
+        grid-template-rows: auto auto auto 1fr;
+        grid-template-areas: "greet" "portrait" "navigation" "content";
         place-items: center;
-        margin: 0;
-        width: 100%;
-    }
-    .greet.big>span {
-        font-size: 50px;
+        padding: 100px 10px;
     }
     .portrait, .greet {
         position: unset;
         margin-bottom: 50px;
+    }
+    .greet>span {
+        font-size: 30px;
+    }
+    nav {
+        margin: 0 0 75px 0;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    nav h2 {
+        left: 0;
+        font-size: 20px;
+    }
+    nav>ul>li {
+        padding: 30px 20px;
+        font-size: 30px;
     }
 }
