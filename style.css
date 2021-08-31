@@ -6,7 +6,11 @@
     box-sizing: border-box
 }
 
-body, h1, h2, h3, h4, h5, h6, p {
+html {
+    scroll-behavior: smooth;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul {
     margin: 0;
     padding: 0;
 }
@@ -18,10 +22,6 @@ a {
 
 li {
     list-style: none;
-}
-
-ul {
-    padding-inline-start: 0;
 }
 
 body {
@@ -39,30 +39,29 @@ main {
     padding: 100px;
     width: 1920px;
     min-height: 100vh;
+}
+
+.landing {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas: "greet greet portrait" "navigation navigation navigation" "content content content";
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "greet greet portrait" "navigation navigation navigation";
 }
 
 .greet>span {
     font-size: 55px;
-    transition: font-size 500ms ease-in-out;
+    transition: font-size 400ms ease-in-out;
 }
 
 .greet.big>span {
     font-size: 80px;
 }
 
-.greet>span.typed-cursor {
-    width: 20px;
-}
-
 .greet {
     width: fit-content;
     grid-area: greet;
     align-self: center;
-    margin-left: 40px;
+    margin: 40px 0;
+    padding-left: 30px;
 }
 
 .portrait {
@@ -76,7 +75,8 @@ main {
 
 nav {
     grid-area: navigation;
-    width: 100%;
+    width: fit-content;
+    place-self: center;
     margin: 75px 0;
     display: flex;
     flex-direction: column;
@@ -85,13 +85,13 @@ nav {
 
 nav h2 {
     position: relative;
-    left: -270px;
+    align-self: flex-start;
+    left: -20px;
     top: 20px;
 }
 
 nav>ul {
     display: flex;
-    margin: 0;
 }
 
 nav>ul>li {
@@ -169,13 +169,12 @@ footer a:hover {
     }
 }
 
-@media only screen and (max-width: 1699px) {
-    main {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto 1fr;
-        grid-template-areas: "greet" "portrait" "navigation" "content";
-        place-items: center;
-        padding: 100px 10px;
+/* TABLET */
+@media only screen and (max-width: 1674px) {
+    .landing {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     .portrait, .greet {
         position: unset;
@@ -185,11 +184,19 @@ footer a:hover {
         font-size: 30px;
     }
     nav {
-        margin: 0 0 75px 0;
+        margin: 0 0 50px 0;
     }
 }
 
+/* MOBILE */
 @media only screen and (max-width: 800px) {
+    main {
+        padding: 10px;
+        padding-bottom: 60px;
+    }
+    .landing {
+        min-height: 100vh;
+    }
     nav h2 {
         left: 0;
         font-size: 20px;
