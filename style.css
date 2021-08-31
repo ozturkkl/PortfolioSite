@@ -106,8 +106,19 @@ nav>ul>li:hover {
     transition: transform 100ms ease-in-out;
 }
 
-.content {
-    grid-area: content;
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 40px;
+}
+
+#projects>a>div {
+    margin: 50px;
+}
+
+#projects>a>div>img {
+    max-width: 400px;
+    max-height: 400px;
 }
 
 footer {
@@ -170,6 +181,7 @@ footer a:hover {
 }
 
 /* TABLET */
+
 @media only screen and (max-width: 1674px) {
     .landing {
         display: flex;
@@ -189,6 +201,7 @@ footer a:hover {
 }
 
 /* MOBILE */
+
 @media only screen and (max-width: 800px) {
     main {
         padding: 10px;

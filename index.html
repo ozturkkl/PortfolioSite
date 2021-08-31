@@ -34,23 +34,22 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#links">Links</a></li>
                     <li><a href="https://drive.google.com/file/d/1lwvI9qY3qZwaHCGMgi0RgH0HgcW2FEf0/view?usp=sharing"
-                            target="blank">Resume</a></li>
+                            target="_blank">Resume</a></li>
                 </ul>
             </nav>
         </section>
-        <section class="content" id="projects">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum nostrum saepe perferendis sed voluptates
-            sequi accusantium ipsam repudiandae laboriosam? Inventore ratione sit non blanditiis nemo dicta. Laudantium
-            sed at facilis illum omnis molestias error dolores adipisci pariatur doloremque suscipit consequuntur, ut
-            quam sit ipsa? Facere exercitationem expedita fuga libero est enim quisquam sapiente inventore voluptates
-            quaerat ut iusto obcaecati asperiores aperiam atque, qui iure maiores. Repellat dolor rerum ipsam temporibus
-            repudiandae repellendus, commodi doloremque, doloribus ducimus distinctio enim est. Nobis cumque aliquid
-            ipsa eos iste, commodi dolores nostrum laboriosam est nesciunt, quod et magni cupiditate optio placeat ex
-            doloribus assumenda maiores facilis architecto earum suscipit. Pariatur eos distinctio explicabo, rerum a
-            quidem culpa sapiente. Esse veniam perspiciatis sit ullam illo expedita molestias rerum vitae commodi
-            accusamus dignissimos error deserunt placeat id, repellat, sint distinctio nam quaerat tempora. Enim nemo
-            saepe soluta consequatur dolore sit porro. Cupiditate voluptatum assumenda iste aliquid!
-
+        <section id="projects">
+            <h1>Projects</h1>
+            <template>
+                <a target="_blank">
+                    <div>
+                        <img>
+                        <h2 id="name"></h2>
+                        <h3 id="language"></h3>
+                        <p id="description"></p>
+                    </div>
+                </a>
+            </template>
         </section>
     </main>
     <footer>
@@ -62,6 +61,9 @@
 <script>
     const portrait = document.querySelector('.portrait')
     const greet = document.querySelector('.greet')
+
+    const projectTemplate = document.querySelector('#projects template')
+    const projects = document.querySelector('#projects')
 
     var options = {
         stringsElement: '#typed-strings',
@@ -81,10 +83,34 @@
         // fadeOut: true,
         // fadeOutClass: 'typed-fade-out',
         // fadeOutDelay: 1500,
-
     };
-
     var typed = new Typed('#greet', options);
+
+
+    fetch('https://api.github.com/users/ozturkkl/repos')
+        .then(response => response.json())
+        .then(data => data.forEach(project => {
+            const readme = `https://raw.githubusercontent.com/ozturkkl/${project.name}/master/README.md`
+            const projectTemplateNode = projectTemplate.content.cloneNode(true)
+
+            fetch(readme)
+                .then(response => response.text())
+                .then(data => {
+                    let imageURL = data.match(/!\[.+\]\((.+)\)/)
+                    if (imageURL && imageURL[1]) {
+                        imageURL = imageURL[1]
+                        projectTemplateNode.querySelector('img').setAttribute('src', imageURL)
+                    }
+
+                    projectTemplateNode.querySelector('a').setAttribute('href', project.html_url)
+                    projectTemplateNode.querySelector('#name').innerText = project.name
+                    projectTemplateNode.querySelector('#language').innerText = project.language
+                    projectTemplateNode.querySelector('#description').innerText = project.description
+                    projects.append(projectTemplateNode)
+                })
+        }));
+
+
 </script>
 
 
