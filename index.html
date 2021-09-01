@@ -40,11 +40,11 @@
         </section>
         <section id="projects">
             <h1>Projects</h1>
+            <div class="projects-container"></div>
             <template>
                 <a target="_blank">
-                    <div>
-                        <img>
-                        <h2 id="name"></h2>
+                    <div class="project">
+                        <h2 id="title"></h2>
                         <h3 id="language"></h3>
                         <p id="description"></p>
                     </div>
@@ -118,7 +118,7 @@
     const greet = document.querySelector('.greet')
 
     const projectTemplate = document.querySelector('#projects template')
-    const projects = document.querySelector('#projects')
+    const projects = document.querySelector('#projects .projects-container')
 
     var options = {
         stringsElement: '#typed-strings',
@@ -154,11 +154,14 @@
                     let imageURL = data.match(/!\[.+\]\((.+)\)/)
                     if (imageURL && imageURL[1]) {
                         imageURL = imageURL[1]
-                        projectTemplateNode.querySelector('img').setAttribute('src', imageURL)
+
+                        const imgElement = document.createElement("img")
+                        imgElement.setAttribute('src', imageURL)
+                        projectTemplateNode.querySelector('.project').appendChild(imgElement)
                     }
 
                     projectTemplateNode.querySelector('a').setAttribute('href', project.html_url)
-                    projectTemplateNode.querySelector('#name').innerText = project.name
+                    projectTemplateNode.querySelector('#title').innerText = project.name
                     projectTemplateNode.querySelector('#language').innerText = project.language
                     projectTemplateNode.querySelector('#description').innerText = project.description
                     projects.append(projectTemplateNode)

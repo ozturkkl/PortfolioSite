@@ -1,5 +1,6 @@
 :root {
     --main-text-color: #EDEDED;
+    --project-transform: 20px;
 }
 
 * {
@@ -37,6 +38,7 @@ body {
 main {
     background: rgb(0 0 0 / 70%);
     padding: 100px;
+    padding-bottom: 75px !important;
     width: 1920px;
     min-height: 100vh;
 }
@@ -66,6 +68,7 @@ main {
 
 .portrait {
     width: 400px;
+    max-width: 100%;
     border-radius: 50%;
     border: 2px solid rgb(0, 122, 0);
     grid-area: portrait;
@@ -110,15 +113,95 @@ h1 {
     font-size: 40px;
     font-weight: bold;
     padding: 40px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: rgb(138, 138, 138) 1px solid;
 }
 
-#projects>a>div {
-    margin: 50px;
+.projects-container {
+    display: flex;
+    flex-direction: column;
 }
 
-#projects>a>div>img {
+.projects-container a {
+    width: 60%;
+}
+
+.projects-container a:nth-child(2n-1) {
+    align-self: flex-end;
+}
+
+.project {
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(39, 39, 39, 0.637);
+    border-radius: 15px;
+    display: grid;
+    min-height: 150px;
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "image language title" "image description description";
+    transition: transform 100ms ease-in-out;
+}
+
+.project:hover {
+    background-color: rgb(39, 39, 39);
+    transform: scale(1.05) translateX(calc(0px - var(--project-transform)));
+}
+
+.projects-container a:nth-child(2n) .project:hover {
+    transform: scale(1.05) translateX(var(--project-transform));
+}
+
+.projects-container a:nth-child(2n) .project {
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: "title language image" "description description image";
+}
+
+.project>img {
     max-width: 400px;
     max-height: 400px;
+    margin-left: 10px;
+    grid-area: image;
+    border: 1px solid rgb(56, 56, 56);
+}
+
+.projects-container a:nth-child(2n-1) img {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.project #title {
+    grid-area: title;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.projects-container a:nth-child(2n-1) .project #title {
+    text-align: right;
+}
+
+.project #language {
+    grid-area: language;
+    text-align: right;
+    color: rgb(165, 165, 165);
+}
+
+.projects-container a:nth-child(2n-1) .project #language {
+    text-align: left;
+}
+
+.project #title, .project #language {
+    padding: 0 15px 5px 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.project #description {
+    grid-area: description;
+    margin: 10px;
 }
 
 footer {
@@ -174,6 +257,7 @@ footer a:hover {
     }
 }
 
+/* PC */
 @media only screen and (max-width: 1899px) {
     .greet.big>span {
         font-size: 55px;
@@ -190,13 +274,32 @@ footer a:hover {
     }
     .portrait, .greet {
         position: unset;
-        margin-bottom: 50px;
+        margin-bottom: 70px;
     }
     .greet>span {
         font-size: 30px;
     }
     nav {
         margin: 0 0 50px 0;
+    }
+    .projects-container a {
+        width: 75%;
+    }
+    .project>img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+}
+
+@media only screen and (max-width: 1249px) {
+    :root {
+        --project-transform: 0px;
+    }
+    main {
+        padding: 50px;
+    }
+    .projects-container a {
+        width: 100%;
     }
 }
 
@@ -205,7 +308,6 @@ footer a:hover {
 @media only screen and (max-width: 800px) {
     main {
         padding: 10px;
-        padding-bottom: 60px;
     }
     .landing {
         min-height: 100vh;
@@ -217,5 +319,25 @@ footer a:hover {
     nav>ul>li {
         padding: 30px 20px;
         font-size: 30px;
+    }
+    .project {
+        margin: 10px;
+        padding: 10px;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: "image image" "title language" "description description" !important;
+    }
+    .project>img {
+        margin: 15px !important;
+        justify-self: center;
+        max-width: calc(100% - 30px);
+    }
+    .project>#title {
+        text-align: left !important;
+    }
+}
+@media only screen and (max-width: 459px) {
+    nav>ul {
+        flex-direction: column;
     }
 }
