@@ -89,6 +89,7 @@
                 porro voluptate dolor quod nostrum culpa soluta illo tempora nihil delectus aut consequuntur enim!
                 Voluptate, asperiores magni quibusdam accusamus ullam aperiam, dolorem, odit deserunt velit corrupti
                 quam nostrum? Molestiae eos impedit accusantium sit?</p>
+            <hr>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto veniam dignissimos aut dolorem nobis
                 voluptatum numquam repudiandae, quia nesciunt accusantium nam consequatur voluptate, eveniet porro qui,
                 rerum debitis harum tempore enim? Repellendus, illum. Delectus vel nulla maxime quam doloremque minima,
@@ -107,6 +108,7 @@
                 quam nostrum? Molestiae eos impedit accusantium sit?</p>
         </section>
     </main>
+    <div class="back-top"></div>
     <footer>
         Kemal Ozturk Portfolio Website<br>
         Email me at <a href="mailto:97kemalozturk@gmail.com">97kemalozturk@gmail.com</a>
@@ -114,11 +116,16 @@
 </body>
 
 <script>
+    scrollOff()
+
+    
     const portrait = document.querySelector('.portrait')
     const greet = document.querySelector('.greet')
-
     const projectTemplate = document.querySelector('#projects template')
     const projects = document.querySelector('#projects .projects-container')
+    const backTop = document.querySelector('.back-top')
+    const windowLocationHash = (window.location.hash) ? document.querySelector(window.location.hash) : window.body
+
 
     var options = {
         stringsElement: '#typed-strings',
@@ -144,31 +151,79 @@
 
     fetch('https://api.github.com/users/ozturkkl/repos')
         .then(response => response.json())
-        .then(data => data.forEach(project => {
-            const readme = `https://raw.githubusercontent.com/ozturkkl/${project.name}/master/README.md`
-            const projectTemplateNode = projectTemplate.content.cloneNode(true)
+        .then(data => {
+            Promise.all(data.map(project => {
+                return new Promise((res, rej) => {
+                    const readme = `https://raw.githubusercontent.com/ozturkkl/${project.name}/master/README.md`
+                    const projectTemplateNode = projectTemplate.content.cloneNode(true)
 
-            fetch(readme)
-                .then(response => response.text())
-                .then(data => {
-                    let imageURL = data.match(/!\[.+\]\((.+)\)/)
-                    if (imageURL && imageURL[1]) {
-                        imageURL = imageURL[1]
+                    fetch(readme)
+                        .then(response => response.text())
+                        .then(async data => {
+                            let imageURL = data.match(/!\[.+\]\((.+)\)/)
+                            if (imageURL && imageURL[1]) {
+                                imageURL = imageURL[1]
 
-                        const imgElement = document.createElement("img")
-                        imgElement.setAttribute('src', imageURL)
-                        projectTemplateNode.querySelector('.project').appendChild(imgElement)
-                    }
+                                let imgElement = await loadImage(imageURL)
+                                projectTemplateNode.querySelector('.project').appendChild(imgElement)
+                            }
 
-                    projectTemplateNode.querySelector('a').setAttribute('href', project.html_url)
-                    projectTemplateNode.querySelector('#title').innerText = project.name
-                    projectTemplateNode.querySelector('#language').innerText = project.language
-                    projectTemplateNode.querySelector('#description').innerText = project.description
-                    projects.append(projectTemplateNode)
+                            projectTemplateNode.querySelector('a').setAttribute('href', project.html_url)
+                            projectTemplateNode.querySelector('#title').innerText = project.name
+                            projectTemplateNode.querySelector('#language').innerText = project.language
+                            projectTemplateNode.querySelector('#description').innerText = project.description
+
+                            projects.append(projectTemplateNode)
+                            res()
+                        })
                 })
-        }));
+            })).then(() => {
+                scrollOn()
+
+                windowLocationHash.scrollIntoView()
+            })
+        });
 
 
+    window.addEventListener('scroll', e => {
+        if (document.documentElement.scrollTop > 500) {
+            backTop.classList.add('visible')
+        }
+        if (document.documentElement.scrollTop < 500) {
+            backTop.classList.remove('visible')
+        }
+    })
+    backTop.addEventListener('click', () => {
+        window.scrollTo(0, 0);
+    })
+
+
+    function disableScroll(e) {
+        e.preventDefault();
+        window.scrollTo(0, 0);
+    }
+    function scrollOff() {
+        document.body.addEventListener('dragstart', (e) => {
+            e.preventDefault()
+        })
+        document.body.style.overflow = "hidden"
+        window.addEventListener('scroll', disableScroll)
+    }
+    function scrollOn() {
+        window.removeEventListener('scroll', disableScroll)
+        document.body.style.overflow = "visible"
+        setTimeout(() => {
+            document.body.parentElement.style.scrollBehavior = "smooth"
+        }, 0);
+    }
+    function loadImage(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = src;
+        })
+    }
 </script>
 
 
