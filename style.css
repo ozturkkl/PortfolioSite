@@ -115,13 +115,13 @@ nav>ul {
 nav>ul>li {
     padding: 30px;
     font-size: 40px;
+    transition: transform 100ms ease-in-out;
 }
 
 nav>ul>li:hover {
     cursor: pointer;
     text-decoration: underline;
     transform: scale(1.2);
-    transition: transform 100ms ease-in-out;
 }
 
 h1 {

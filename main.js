@@ -98,7 +98,7 @@ const linksObj = [
     {
         title: "Twitch.Tv",
         url: "https://www.twitch.tv/kemal_ozt",
-        description: "Programmer by the day, gamer by the night. \n What are we playing?",
+        description: "Programmer by day, gamer by night. \n What are we playing?",
         src: 'images/links/Twitch.Tv.svg'
     },
     {
