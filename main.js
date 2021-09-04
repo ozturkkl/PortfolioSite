@@ -104,7 +104,7 @@ const linksObj = [
     {
         title: "Steam",
         url: "https://steamcommunity.com/profiles/76561198068939833/",
-        description: "Oh you wanna play together??? \n Hit me up!",
+        description: "Are we gonna play together??? \n Hit me up!",
         src: 'images/links/Steam.webp'
     },
     {
@@ -124,7 +124,9 @@ for (link of linksObj) {
     const linkTemplateNode = linkTemplate.content.cloneNode(true)
 
     if (link.title === "Embed") {
-        // Do embed stuff 
+        const embedDiv = document.createElement('div')
+        embedDiv.innerHTML = link.html
+        links.append(embedDiv)
         continue
     }
     if (link.src.search(/\.svg$/) === -1) {

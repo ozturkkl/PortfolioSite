@@ -219,7 +219,6 @@ h1 {
 .links>div {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     align-items: center;
 }
 
@@ -289,6 +288,10 @@ h1 {
     font-size: 15px;
     opacity: .7;
     overflow: hidden;
+}
+
+.links-container .embed {
+    width: 500px;
 }
 
 .back-top {
@@ -473,8 +476,8 @@ footer a:hover {
     }
 }
 @media only screen and (max-width: 539px) {
-    .link {
-        width: auto;
+    .link, .links-container .embed {
+        width: 100%;
     }
 }
 
