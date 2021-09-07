@@ -1,5 +1,4 @@
 scrollOff()
-const windowLocationHash = (window.location.hash) ? document.querySelector(window.location.hash) : window.body
 
 const portrait = document.querySelector('.portrait')
 const greet = document.querySelector('.greet')
@@ -66,7 +65,7 @@ fetch('https://api.github.com/users/ozturkkl/repos')
         })).then(() => {
             scrollOn()
 
-            windowLocationHash.scrollIntoView()
+            window.location.hash && document.querySelector(window.location.hash).scrollIntoView()
         })
     });
 
