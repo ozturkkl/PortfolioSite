@@ -48,9 +48,15 @@ fetch('https://api.github.com/users/ozturkkl/repos')
                         let imageURL = data.match(/!\[.+\]\((.+)\)/)
                         if (imageURL && imageURL[1]) {
                             imageURL = imageURL[1]
+                            let imgElement = null
 
-                            let imgElement = await loadImage(imageURL)
-                            projectTemplateNode.querySelector('.project').appendChild(imgElement)
+                            try{
+                                imgElement = await loadImage(imageURL)
+                            }
+                            catch(e){
+                                console.log(e)
+                            }
+                            if (imgElement) projectTemplateNode.querySelector('.project').appendChild(imgElement)
                         }
 
                         projectTemplateNode.querySelector('a').setAttribute('href', project.html_url)
