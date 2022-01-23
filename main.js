@@ -103,7 +103,7 @@ const linksObj = [
     title: "YouTube",
     url: "https://www.youtube.com/channel/UCE2I4KMK3Jji75rcaEqhwHA",
     description:
-      "Hey guyssss!!!!, welcome to my youtube channel. \n Remember to SuBScrIbE and lEAve A LiEk",
+      "Music videos, do you have a song request? Hit me up, maybe I might just play it here...",
     src: "images/links/YouTube.svg",
   },
   {
