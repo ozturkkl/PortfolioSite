@@ -130,7 +130,7 @@ const linksObj = [
   },
   {
     title: "Instagram",
-    url: "https://www.instagram.com/ozturk_kl/",
+    url: "https://www.instagram.com/kema1_ozt/",
     description: `I don't post here much but message me! \n I'll reply ✍`,
     src: "images/links/Instagram.svg",
   },
