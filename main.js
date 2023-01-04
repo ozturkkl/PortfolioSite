@@ -101,9 +101,9 @@ const linksObj = [
   },
   {
     title: "YouTube",
-    url: "https://www.youtube.com/channel/UCE2I4KMK3Jji75rcaEqhwHA",
+    url: "https://www.youtube.com/@kemal_ozturk/featured",
     description:
-      "Music videos, do you have a song request? Hit me up, maybe I might just play it here...",
+      "Music videos, covers. My main instrument is the piano. \n Do you have a song request?",
     src: "images/links/YouTube.svg",
   },
   {
@@ -113,19 +113,19 @@ const linksObj = [
   {
     title: "Twitch.Tv",
     url: "https://www.twitch.tv/kemal_ozt",
-    description: "Programmer by day, gamer by night. \n What are we playing?",
+    description: "Sometimes I stream games & maybe music?. \n Why not stop by!",
     src: "images/links/Twitch.Tv.svg",
   },
   {
     title: "Steam",
-    url: "https://steamcommunity.com/profiles/76561198068939833/",
-    description: "Are we gonna play together??? \n Hit me up!",
+    url: "https://steamcommunity.com/id/kemal_ozt/",
+    description: "Any gamers out there??? \n Hit me up!",
     src: "images/links/Steam.webp",
   },
   {
     title: "Discord",
     url: "https://discord.gg/Cpzf6qY",
-    description: `Join the community, not an active one... \n But still there \\_('. .)_/`,
+    description: `Join the server, not an active one... \n But still there \\_('. .)_/`,
     src: "images/links/Discord.webp",
   },
   {
