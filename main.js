@@ -89,32 +89,26 @@ fetch("https://api.github.com/users/ozturkkl/repos")
 const linksObj = [
   {
     title: "LinkedIn",
-    url: "https://www.linkedin.com/mwlite/in/ozturkkl",
-    description: "If u send me konnekt, I konnekt. \n Send konnekt pls.",
+    url: "https://www.linkedin.com/in/ozturkkl/",
+    description: "Let's connect and build something amazing together 💪",
     src: "images/links/LinkedIn.webp",
   },
   {
     title: "GitHub",
     url: "https://github.com/ozturkkl",
-    description: "Most of the projects live here... \nIncluding this website.",
+    description: "Most of the projects live here... \nIncluding this website. 💻",
     src: "images/links/GitHub.webp",
   },
   {
     title: "YouTube",
     url: "https://www.youtube.com/@kemal_ozturk/featured",
     description:
-      "Music videos, covers. My main instrument is the piano. \n Do you have a song request?",
+      "Music videos, covers. My main instrument is the piano. \n Do you have a song request? 🎹",
     src: "images/links/YouTube.svg",
   },
   {
     title: "Embed",
     html: `<iframe class="embed" width="560" height="315" src="https://www.youtube.com/embed/b2C7c3MK9wY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
-  },
-  {
-    title: "Twitch.Tv",
-    url: "https://www.twitch.tv/kemal_ozt",
-    description: "Sometimes I stream games & maybe music?. \n Why not stop by!",
-    src: "images/links/Twitch.Tv.svg",
   },
   {
     title: "Steam",
@@ -123,14 +117,8 @@ const linksObj = [
     src: "images/links/Steam.webp",
   },
   {
-    title: "Discord",
-    url: "https://discord.gg/Cpzf6qY",
-    description: `Join the server, not an active one... \n But still there \\_('. .)_/`,
-    src: "images/links/Discord.webp",
-  },
-  {
     title: "Instagram",
-    url: "https://www.instagram.com/kema1_ozt/",
+    url: "https://www.instagram.com/kemal.ozt/",
     description: `I don't post here much but message me! \n I'll reply ✍`,
     src: "images/links/Instagram.svg",
   },
